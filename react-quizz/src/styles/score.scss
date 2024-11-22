@@ -1,0 +1,92 @@
+.theme-container{
+  .container{
+    .score-container {
+      display: flex;
+      .text-container{
+        flex: 1;
+        .theme-static-text-score{
+          //color: var(--purewhite);
+          font-size: var(--heading-l-font-size);
+          font-weight: var(--heading-regular);
+        }
+        .light-text-score{
+          color: var(--purewhite);
+        }
+        .dark-heading-score,.dark-sub-heading-score{
+          color: var(--purewhite);
+        }
+        .theme-static-sub-text-score{
+          font-size: var(--heading-l-font-size);
+          font-weight: var(--heading-bold);
+        }
+      }
+      .card-container{
+        flex: 1;
+        display: flex;flex-direction: column;gap: 3.6667rem;
+      }
+      .accessibility-img-wrapper {
+        display: flex;justify-content: center;
+        align-items: center;
+        gap: 2rem;
+      }
+      .total-score{
+        display: flex;flex-direction:column;justify-content: center;align-items: center;
+      }
+      .play-again{
+        width: 100%;
+      }
+      .access-background {
+        background: #F6E7FF;
+        border-radius: 0.667rem;
+        padding: 0.667rem;
+      }
+
+      .lights {
+        display: flex;
+        justify-content: right;
+
+        .light-toggle {
+          border: 2px solid red;
+        }
+      }
+    }
+    .theme-static-text-score{
+      font-size: var(--heading-l-font-size);
+      font-weight: var(--heading-regular);
+    }
+    .theme-left-text-dark{
+      color: var(--purewhite);
+    }
+    .score-card{
+      padding: 4rem;
+      background: var(--purewhite);
+      border-radius: 2rem;
+    }
+    .score-bg-dark{
+      background: var(--navy);
+    }
+    .score{
+      color: var(--darknavy);
+      font-size: var(--heading-l-font-size);
+    }
+    .score-dark{
+      color: var(--purewhite);
+    }
+    .total-question{
+      color: var(--greynavy);
+      font-weight: var(--heading-regular);
+    }
+    .dark-total-question{
+      color: var(--lightbluish);
+    }
+  }
+}
+@media screen and (max-width: 64rem) {
+  .theme-container{
+    .container{
+      .score-container{
+        flex-direction: column;gap: 5.333rem;
+      }
+    }
+  }
+}

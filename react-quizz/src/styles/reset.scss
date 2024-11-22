@@ -1,0 +1,107 @@
+/* _reset.scss */
+
+/* Remove margin and padding from all elements */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+//  colors
+  --darknavy:#313E51;
+  --greynavy:#626C7F;
+  --lightbluish:#ABC1E1;
+  --lightgrey:#F4F6FA;
+  --green:#26D782;
+  --navy:#3B4D66;
+  --purple:#A729F5;
+  --red:#EE5454;
+  --purewhite:#FFFFFF;
+
+//  font-family
+  --font-family:'rubik';
+
+  //font-size
+  --base-font-size:12px;
+  --display-M-font-size:12rem; //144px
+  --heading-l-font-size:5.33rem; //64px
+  --heading-M-font-size:3rem; //36px
+  --heading-S-font-size:2.333rem; //28px
+
+//  line-height
+  --heading-line-height:1rem;
+  --base-line-height:1.5rem;
+
+//  font-weight
+
+  --heading-bold:700;
+  --heading-regular:400;
+  --heading-M:500;
+  --heading-S:300;
+
+}
+/* Ensure consistent font sizing */
+body {
+  background: var(--lightgrey);
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--heading-bold);
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%; /* Responsive media */
+}
+
+button, input, select, textarea {
+  border: none;
+  background: none;
+  font: inherit; /* Inherit font settings */
+}
+
+a {
+  color: inherit; /* Use the current color */
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none; /* Remove list styles */
+}
+
+table {
+  border-collapse: collapse; /* Consistent table borders */
+  width: 100%;
+}
+
+q, blockquote {
+  quotes: none; /* Remove quote styling */
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: ''; /* Prevent default quotes */
+}
+
+hr {
+  border: none; /* Remove default HR styling */
+}
+
+:focus {
+  outline: 2px dashed #000; /* Visible focus outline */
+  outline-offset: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none; /* Remove outline for non-keyboard focus */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
