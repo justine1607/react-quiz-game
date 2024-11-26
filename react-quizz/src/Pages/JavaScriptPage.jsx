@@ -9,8 +9,8 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [QuizCta, setQuizCta] = useState('submit answer');
-    const [correctAnswers, setCorrectAnswers] = useState(1);
-    const [wrongAnswers, setWrongAnswers] = useState(1);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [wrongAnswers, setWrongAnswers] = useState(0);
     const [hasSubmitted, setHasSubmitted] = useState(null);
     const [Score, setScore] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
@@ -45,7 +45,7 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
     };
     const handleSubmit = () => {
         const isQuizEnd = currentQuestionIndex === Questions.length - 1;
-        if (isQuizEnd) {
+        if (isQuizEnd && hasSubmitted) {
             NavigateToScore();
             return;
         }
@@ -143,9 +143,8 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                                     ) : (
                                         <p>No options available for this question</p>
                                     )}
-
-                                    <button className='submit-btn theme-button' onClick={handleSubmit}>
-                                    {isQuizEnd ? 'view score' : QuizCta}
+                                    <button className="submit-btn theme-button" onClick={handleSubmit}>
+                                        {hasSubmitted && isQuizEnd ? 'View Score' : QuizCta}
                                     </button>
                                     {errorMessage && (
                                         <div className="error-message">

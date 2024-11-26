@@ -45,7 +45,7 @@ function Score ({ quizData, isLightOn, lightToggle  }){
                             <div className="card-container">
                                 <div className={`score-card ${isLightOn ? 'score-bg-dark' : 'score-bg-light'}`}>
                                     <div className="accessibility-img-wrapper">
-                                        <img className='access-background' src={quizIcon}
+                                        <img className='subject-background' src={quizIcon}
                                              alt={`${quizIcon} Icon`}/>
                                         <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitleText}</h3>
                                     </div>
