@@ -31,23 +31,23 @@ function Score ({ quizData, isLightOn, lightToggle  }){
                     <div className="container">
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
-                                <img className='access-background' src={quizIcon}
+                                <img className='subject-background' src={quizIcon}
                                      alt={`${quizIconData} Icon`}/>
-                               <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-text-light'}`}>{quizTitleText}</h3>
+                               <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitleText}</h3>
                             </div>
                            <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle}/>
                         </span>
                             <div className="score-container">
                             <div className="text-container">
-                                <h3 className={` theme-static-text-score ${isLightOn ? 'theme-left-text-dark' : 'theme-left-text-light'}`}>Quiz completed</h3>
-                                <h2 className={` theme-static-sub-text-score ${isLightOn ? 'theme-left-text-dark' : 'theme-left-text-light'}`}>You scored... </h2>
+                                <h3 className={` theme-static-text-score ${isLightOn ? 'headline-text-dark' : 'headline-text-light'}`}>Quiz completed</h3>
+                                <h2 className={` theme-static-sub-text-score ${isLightOn ? 'sub-text-dark' : 'sub-text-light'}`}>You scored... </h2>
                             </div>
                             <div className="card-container">
                                 <div className={`score-card ${isLightOn ? 'score-bg-dark' : 'score-bg-light'}`}>
                                     <div className="accessibility-img-wrapper">
                                         <img className='access-background' src={quizIcon}
                                              alt={`${quizIcon} Icon`}/>
-                                        <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-text-light'}`}>{quizTitleText}</h3>
+                                        <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitleText}</h3>
                                     </div>
                                     <div className="total-score">
                                         <h3 className={`score ${isLightOn ? 'score-dark' : 'score-light'}`}>{score}</h3>
@@ -66,6 +66,6 @@ function Score ({ quizData, isLightOn, lightToggle  }){
     );
 }
 Score.propTypes = {
-    isLightOn: PropTypes.bool, // Validating that isLightOn should be a boolean and is required
+    isLightOn: PropTypes.bool,
 };
 export default Score

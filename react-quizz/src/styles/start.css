@@ -1,0 +1,99 @@
+.theme-container .container .front {
+  display: flex;
+  padding-top: 5.25rem;
+}
+.theme-container .container .text-container {
+  flex: 1;
+}
+.theme-container .container .text {
+  color: var(--darknavy);
+  font-size: var(--heading-l-font-size);
+  font-weight: var(--heading-S);
+}
+.theme-container .container .text.header-dark {
+  color: var(--purewhite);
+}
+.theme-container .container .bold-headline {
+  font-weight: var(--heading-M);
+}
+.theme-container .container .bold-headline.headline-dark {
+  color: var(--purewhite);
+}
+.theme-container .container .bd-text {
+  padding-top: 4rem;
+  font-size: var(--heading-S-font-size);
+  font-weight: var(--heading-regular);
+  font-style: italic;
+  color: var(--greynavy);
+}
+.theme-container .container .dark-bd-text {
+  color: var(--lightbluish);
+}
+.theme-container .container .subject-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 2rem;
+}
+.theme-container .container .subject-wrapper span {
+  cursor: pointer;
+  padding: 1.66rem;
+  background: var(--purewhite);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2.66rem;
+}
+.theme-container .container .subject-wrapper img {
+  border-radius: 0.667rem;
+  padding: 0.667rem;
+}
+.theme-container .container .subject-wrapper .html-background {
+  background: #FFF1E9;
+}
+.theme-container .container .subject-wrapper .css-background {
+  background: #E0FDEF;
+}
+.theme-container .container .subject-wrapper .js-background {
+  background: #EBF0FF;
+}
+.theme-container .container .subject-wrapper .access-background {
+  background: #F6E7FF;
+}
+.theme-container .container .subject-wrapper h3 {
+  color: var(--darknavy);
+  font-size: var(--heading-S-font-size);
+  font-weight: var(--heading-M);
+}
+
+@media screen and (max-width: 70.41rem) {
+  .theme-container .container .front {
+    flex-direction: column;
+    gap: 5.33rem;
+  }
+  .theme-container .container .front p {
+    padding-top: 1.33rem;
+  }
+}
+@media screen and (max-width: 31.25rem) {
+  .container .front {
+    gap: 3.333rem;
+  }
+  .container .bd-text {
+    font-size: inherit;
+  }
+  .container .subject-wrapper span {
+    gap: 1.333rem;
+  }
+  .container .subject-wrapper span h3 {
+    font-size: 1.5rem;
+  }
+  .container .subject-name {
+    font-size: 1.5rem;
+  }
+  .container .theme-subject-light {
+    font-size: 1.5rem;
+  }
+}
+
+/*# sourceMappingURL=start.css.map */

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/reset.scss'
 import '../styles/theme.scss'
-import '../styles/accessibility.scss'
 import {useNavigate} from "react-router-dom";
 import ThemeColor from "./ThemeColor.jsx";
 import PropTypes from 'prop-types';
@@ -26,8 +25,6 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                 quizTitle:JavaScriptQuizTitle,
                 quizIcon:JavaScriptQuizIcon } });
     }
-
-
     const JavaScriptData = quizData?.quizzes?.find(
         (item) => item.title === 'JavaScript' && item.icon
     );
@@ -54,7 +51,6 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
         }
         // Check if an answer is selected
         if (!selectedAnswer) {
-            console.log('No answer selected');
             setErrorMessage('Please select an option.');
             return;
         }
@@ -64,13 +60,11 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
         if (!hasSubmitted) {
             setHasSubmitted(true);
             if (selectedAnswer === QuizAnswer) {
-                // console.log(selectedAnswer,'correct-answer')
                 setCorrectAnswers((prevCount) => {
                     const updatedCount = prevCount + 1;
                     setScore(updatedCount);
                     return updatedCount;
                 });
-                // console.log(setCorrectAnswers)
             }else{
                 setWrongAnswers((prevCount) => prevCount + 1);
             }
@@ -96,7 +90,7 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                     <div className="container">
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
-                                <img className='access-background' src={JavaScriptQuizIcon} alt="js-icon"/>
+                                <img className='subject-background' src={JavaScriptQuizIcon} alt="js-icon"/>
                                 <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{JavaScriptQuizTitle}</h3>
                             </div>
                               <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle} />
@@ -105,8 +99,8 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                             <div className="contents">
                                 <div className="quizzes-questions">
                                     <div className="questions">
-                                        <p className={`question-title ${isLightOn? 'theme-question-title-dark' : 'theme-left-question-title-light'}`}>Question {currentQuestionIndex + 1} of {Questions.length}</p>
-                                        <h2 className={`question ${isLightOn? 'question-dark': 'theme-left-text-light'}`}>{currentQuestion || "No question available"}</h2>
+                                        <p className={`question-title ${isLightOn? 'question-title-dark' : 'question-title-light'}`}>Question {currentQuestionIndex + 1} of {Questions.length}</p>
+                                        <h2 className={`question ${isLightOn? 'question-dark': 'question-light'}`}>{currentQuestion || "No question available"}</h2>
                                         {/* Progress Bar */}
                                         <div className="progress-bar">
                                             {Questions.map((_, index) => (
@@ -131,7 +125,7 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                                                 onClick={() => handleAnswerClick(option)}
                                             >
                                                 <div className="options-container">
-                                                    <p>{String.fromCharCode(65 + index)}</p>
+                                                    <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
                                                     <h3 className={`options ${isLightOn ? 'options-dark' : 'option-light'}`}>{option}</h3>
                                                 </div>
                                                 {hasSubmitted && option === QuizAnswer && (
@@ -151,7 +145,7 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
                                     )}
 
                                     <button className='submit-btn theme-button' onClick={handleSubmit}>
-                                        {isQuizEnd ? 'view score' : QuizCta}
+                                    {isQuizEnd ? 'view score' : QuizCta}
                                     </button>
                                     {errorMessage && (
                                         <div className="error-message">
@@ -169,7 +163,7 @@ function JavaScript({ quizData, isLightOn, lightToggle }){
     )
 }
 JavaScript.propTypes = {
-    isLightOn: PropTypes.bool.isRequired,  // `isLightOn` should be a boolean and is required
-    lightToggle: PropTypes.func.isRequired,  // `lightToggle` should be a function and is required
+    isLightOn: PropTypes.bool.isRequired,
+    lightToggle: PropTypes.func.isRequired,
 };
 export default JavaScript

@@ -1,0 +1,114 @@
+.theme-container {
+  .container {
+    .front {
+      display: flex;
+      padding-top: 5.25rem;
+    }
+    .text-container {
+      flex: 1;
+    }
+    .text {
+      color: var(--darknavy);
+      font-size: var(--heading-l-font-size);
+      font-weight: var(--heading-S);
+      &.header-dark{
+        color: var(--purewhite);
+      }
+    }
+    .bold-headline {
+      font-weight: var(--heading-M);
+      &.headline-dark{
+        color: var(--purewhite);
+      }
+    }
+    .bd-text {
+      padding-top: 4rem;
+      font-size: var(--heading-S-font-size);
+      font-weight: var(--heading-regular);
+      font-style: italic;
+      color: var(--greynavy);
+    }
+
+    .dark-bd-text {
+      color: var(--lightbluish);
+    }
+
+    .subject-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 2rem;
+
+      span {
+        cursor: pointer;
+        padding: 1.66rem;
+        background: var(--purewhite);
+        border-radius: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2.66rem;
+      }
+
+      img {
+        border-radius: 0.667rem;
+        padding: 0.667rem;
+      }
+
+      .html-background {
+        background: #FFF1E9;
+      }
+
+      .css-background {
+        background: #E0FDEF;
+      }
+
+      .js-background {
+        background: #EBF0FF;
+      }
+
+      .access-background {
+        background: #F6E7FF;
+      }
+
+      h3 {
+        color: var(--darknavy);
+        font-size: var(--heading-S-font-size);
+        font-weight: var(--heading-M);
+      }
+    }
+  }
+}
+@media screen and (max-width: 70.41rem) {
+  .theme-container{
+    .container{
+      .front{
+        flex-direction: column;gap: 5.33rem;
+        p{
+          padding-top: 1.33rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 31.25rem) {
+  .container{
+    .front{
+      gap: 3.333rem;
+    }
+    .bd-text{
+      font-size: inherit;
+    }
+    .subject-wrapper span{
+      gap: 1.333rem;
+      h3{
+        font-size: 1.5rem;
+      }
+    }
+    .subject-name{
+      font-size: 1.5rem;
+    }
+    .theme-subject-light{
+      font-size: 1.5rem;
+    }
+  }
+}

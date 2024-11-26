@@ -18,6 +18,7 @@
   --green:#26D782;
   --navy:#3B4D66;
   --purple:#A729F5;
+  --purple-50: rgba(167, 41, 245, 0.5);
   --red:#EE5454;
   --purewhite:#FFFFFF;
 
@@ -25,7 +26,8 @@
   --font-family:'rubik';
 
   //font-size
-  --base-font-size:12px;
+  --big-header:12rem;
+  --body-font-size:1.5rem;
   --display-M-font-size:12rem; //144px
   --heading-l-font-size:5.33rem; //64px
   --heading-M-font-size:3rem; //36px
@@ -47,8 +49,11 @@
 body {
   background: var(--lightgrey);
   font-family: var(--font-family);
-  font-size: var(--base-font-size);
+  font-size: var(--body-font-size);
   font-weight: var(--heading-bold);
+}
+html{
+  font-size: 12px;
 }
 img, picture, video, canvas, svg {
   display: block;

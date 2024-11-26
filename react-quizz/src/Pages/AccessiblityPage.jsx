@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/reset.scss'
 import '../styles/theme.scss'
-import '../styles/accessibility.scss'
 import {useNavigate} from "react-router-dom";
 import ThemeColor from "./ThemeColor.jsx";
 import PropTypes from 'prop-types';
@@ -62,13 +61,11 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
         if (!hasSubmitted) {
             setHasSubmitted(true);
             if (selectedAnswer === QuizAnswer) {
-                // console.log(selectedAnswer,'correct-answer')
                 setCorrectAnswers((prevCount) => {
                     const updatedCount = prevCount + 1;
                     setScore(updatedCount);
                     return updatedCount;
                 });
-                // console.log(setCorrectAnswers)
             }else{
                 setWrongAnswers((prevCount) => prevCount + 1);
             }
@@ -94,7 +91,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                     <div className="container">
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
-                                <img className='access-background' src={AccessibilityQuizIcon} alt="accessibility-icon"/>
+                                <img className='subject-background' src={AccessibilityQuizIcon} alt="accessibility-icon"/>
                                 <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{AccessibilityQuizTitle}</h3>
                             </div>
                               <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle} />
@@ -103,8 +100,8 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                             <div className="contents">
                                 <div className="quizzes-questions">
                                     <div className="questions">
-                                        <p className={`question-title ${isLightOn? 'theme-question-title-dark' : 'theme-left-question-title-light'}`}>Question {currentQuestionIndex + 1} of {Questions.length}</p>
-                                        <h2 className={`question ${isLightOn? 'question-dark': 'theme-left-text-light'}`}>{currentQuestion || "No question available"}</h2>
+                                        <p className={`question-title ${isLightOn? 'question-title-dark' : 'question-title-light'}`}>Question {currentQuestionIndex + 1} of {Questions.length}</p>
+                                        <h2 className={`question ${isLightOn? 'question-dark': 'question-light'}`}>{currentQuestion || "No question available"}</h2>
                                         {/* Progress Bar */}
                                         <div className="progress-bar">
                                             {Questions.map((_, index) => (
@@ -120,16 +117,14 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                                 <div className="quizess-choices">
                                     {Questions[currentQuestionIndex]?.options && Questions[currentQuestionIndex].options.length > 0 ? (
                                         Questions[currentQuestionIndex]?.options.map((option, index) => (
-                                            <button
-                                                key={index}
-                                                className={`cta-choices ${isLightOn ? 'cta-choice-bg-dark' : 'cta-choice-bg-light'}
+                                            <button key={index} className={`cta-choices 
+                                                      ${isLightOn ? 'cta-choice-bg-dark' : 'cta-choice-bg-light'}
                                                       ${selectedAnswer === option ? 'selected-choice' : ''} 
                                                       ${hasSubmitted && option === QuizAnswer ? 'correct-answer' : ''} 
                                                       ${hasSubmitted && selectedAnswer === option && selectedAnswer !== QuizAnswer ? 'incorrect-answer' : ''}`}
-                                                onClick={() => handleAnswerClick(option)}
-                                            >
+                                                onClick={() => handleAnswerClick(option)}>
                                                 <div className="options-container">
-                                                    <p>{String.fromCharCode(65 + index)}</p>
+                                                    <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
                                                     <h3 className={`options ${isLightOn ? 'options-dark' : 'option-light'}`}>{option}</h3>
                                                 </div>
                                                 {hasSubmitted && option === QuizAnswer && (
@@ -154,7 +149,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                                     {errorMessage && (
                                         <div className="error-message">
                                             <img className="error-icon" src="/images/icon-error.svg" alt="error-icon"/>
-                                            <p>{errorMessage}</p>
+                                            <p className='error'>{errorMessage}</p>
                                         </div>
                                     )}
                                 </div>
@@ -167,7 +162,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
     )
 }
 Accessibility.propTypes = {
-    isLightOn: PropTypes.bool.isRequired,  // `isLightOn` should be a boolean and is required
-    lightToggle: PropTypes.func.isRequired,  // `lightToggle` should be a function and is required
+    isLightOn: PropTypes.bool.isRequired,  //
+    lightToggle: PropTypes.func.isRequired,  //
 };
 export default Accessibility

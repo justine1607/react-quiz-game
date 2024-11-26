@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import '../styles/reset.scss'
 import '../styles/theme.scss'
-import '../styles/style.scss'
-import {useNavigate, useNavigation} from "react-router-dom";
+import '../styles/start.scss'
+import {useNavigate} from "react-router-dom";
 import ThemeColor from "./ThemeColor.jsx";
 import PropTypes from 'prop-types';
 
@@ -28,8 +28,8 @@ function Start({ isLightOn, lightToggle }) {
                         <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle} />
                         <div className="front">
                             <div className='text-container'>
-                                <h3 className={`text ${isLightOn ? 'theme-subject-dark' : 'block'}`}>Welcome to the </h3>
-                                <h3 className={`bold-headline text ${isLightOn ? 'theme-subject-dark' : 'block'}`}>Frontend Quiz!</h3>
+                                <h3 className={`text ${isLightOn ? 'header-dark' : 'block'}`}>Welcome to the </h3>
+                                <h3 className={`bold-headline text ${isLightOn ? 'headline-dark' : 'block'}`}>Frontend Quiz!</h3>
                                 <p className={`bd-text ${isLightOn ? 'dark-bd-text' : 'block'}`}>Pick a subject to get started.</p>
                             </div>
                             <div className='subject-wrapper'>
@@ -52,7 +52,7 @@ function Start({ isLightOn, lightToggle }) {
                                     </h3>
                                 </span>
                                 <span className='access-style' onClick={NavigateToAccessibility}>
-                                     <img className='access-background' src="../public/images/icon-accessibility.svg"
+                                     <img className='access-background' src="/images/icon-accessibility.svg"
                                           alt="accessibilty-icon"/>
                                      <h3>
                                        Accessibility
@@ -67,7 +67,7 @@ function Start({ isLightOn, lightToggle }) {
     )
 }
 Start.propTypes = {
-    isLightOn: PropTypes.bool.isRequired,  // `isLightOn` should be a boolean and is required
-    lightToggle: PropTypes.func.isRequired,  // `lightToggle` should be a function and is required
+    isLightOn: PropTypes.bool.isRequired,
+    lightToggle: PropTypes.func.isRequired,
 };
 export default Start

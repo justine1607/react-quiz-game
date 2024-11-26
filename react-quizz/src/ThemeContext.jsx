@@ -17,5 +17,4 @@ export const ThemeProvider = ({ children }) => {
 ThemeProvider.propTypes = {
     children: PropTypes.node.isRequired, // Prop validation for children
 };
-// Custom hook to use the ThemeContext
 export const useTheme = () => useContext(ThemeContext);

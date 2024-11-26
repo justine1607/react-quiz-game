@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './styles/reset.scss'
 import './styles/theme.scss'
-import './styles/style.scss'
+import './styles/start.scss'
 // import {useNavigate, useNavigation} from "react-router-dom";
 import Start from './Pages/StartMenu.jsx';
 import ThemeBg from "./Pages/ThemeBgImage.jsx";
@@ -17,8 +17,6 @@ import NotFoundPage from "./Pages/NotFoundPage.jsx";
 function App() {
     const [isLightOn, setIsLightOn] = useState(false);
     const [quizData, setQuizData] = useState(null);
-    // console.log(quizData)
-
     const lightToggle = () => {
         setIsLightOn((prev) => !prev);
     };

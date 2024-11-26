@@ -14,11 +14,10 @@ function ThemeBgImage({ isLightOn }) {
                 src="/images/pattern-background-desktop-dark.svg"
                 alt="dark-pattern"
             />
-            {/* You can add more content like light-toggle icons if necessary */}
         </>
     );
 }
 ThemeBgImage.propTypes = {
-    isLightOn: PropTypes.bool, // Validating that isLightOn should be a boolean and is required
+    isLightOn: PropTypes.bool,
 };
 export default ThemeBgImage;
