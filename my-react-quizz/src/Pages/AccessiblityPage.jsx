@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../styles/reset.scss'
 import '../styles/theme.scss'
 import {useNavigate} from "react-router-dom";
 import ThemeColor from "./ThemeColor.jsx";
 import PropTypes from 'prop-types';
 
-function Accessibility({ quizData, isLightOn, lightToggle }){
+function Accessibility({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  }){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [QuizCta, setQuizCta] = useState('submit answer');
@@ -26,8 +26,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                 quizIcon:AccessibilityQuizIcon } });
     }
     const AccessibilityData = quizData?.quizzes?.find(
-        (item) => item.title === 'Accessibility' && item.icon
-    );
+        (item) => item.title === 'Accessibility' && item.icon);
     const AccessibilityQuizTitle = AccessibilityData?.title;
     const AccessibilityQuizIcon = AccessibilityData?.icon;
     const Questions = AccessibilityData?.questions || [];
@@ -51,7 +50,6 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
             }
         // Check if an answer is selected
         if (!selectedAnswer) {
-            console.log('No answer selected');
             setErrorMessage('Please select an option.');
             return;
         }
@@ -79,7 +77,25 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
         }
     };
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case 'Enter':
+                    if (selectedAnswer) {
+                        handleSubmit();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
 
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
     if (!quizData) {
         return <div>Loading...</div>;
     }
@@ -88,7 +104,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
         <>
             <main>
                 <div className="theme-container">
-                    <div className="container">
+                    <div className="container" ref={containerRef}>
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
                                 <img className='subject-background' src={AccessibilityQuizIcon} alt="accessibility-icon"/>
@@ -114,7 +130,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                                         </div>
                                     </div>
                                 </div>
-                                <div className="quizess-choices">
+                                <div className="quizess-choices" tabIndex={0}>
                                     {Questions[currentQuestionIndex]?.options && Questions[currentQuestionIndex].options.length > 0 ? (
                                         Questions[currentQuestionIndex]?.options.map((option, index) => (
                                             <button key={index} className={`cta-choices 
@@ -122,8 +138,8 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                                                       ${selectedAnswer === option ? 'selected-choice' : ''} 
                                                       ${hasSubmitted && option === QuizAnswer ? 'correct-answer' : ''} 
                                                       ${hasSubmitted && selectedAnswer === option && selectedAnswer !== QuizAnswer ? 'incorrect-answer' : ''}`}
-                                                    onClick={() => handleAnswerClick(option)}>
-                                                <div className="options-container">
+                                                    onClick={() => handleAnswerClick(option)} tabIndex={0}>
+                                                <div className="options-container" >
                                                     <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
                                                     <h3 className={`options ${isLightOn ? 'options-dark' : 'option-light'}`}>{option}</h3>
                                                 </div>
@@ -143,7 +159,7 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
                                         <p>No options available for this question</p>
                                     )}
 
-                                    <button className="submit-btn theme-button" onClick={handleSubmit}>
+                                    <button className="submit-btn theme-button" onClick={handleSubmit} tabIndex={0}>
                                         {hasSubmitted && isQuizEnd ? 'View Score' : QuizCta}
                                     </button>
                                     {errorMessage && (
@@ -161,9 +177,8 @@ function Accessibility({ quizData, isLightOn, lightToggle }){
         </>
     )
 }
-
 Accessibility.propTypes = {
-    isLightOn: PropTypes.bool.isRequired,  //
-    lightToggle: PropTypes.func.isRequired,  //
+    isLightOn: PropTypes.bool.isRequired,
+    lightToggle: PropTypes.func.isRequired,
 };
 export default Accessibility

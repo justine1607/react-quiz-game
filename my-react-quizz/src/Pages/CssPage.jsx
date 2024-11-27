@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../styles/reset.scss'
 import '../styles/theme.scss'
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import ThemeColor from "./ThemeColor.jsx";
 import PropTypes from 'prop-types';
 
-function Css({ quizData, isLightOn, lightToggle }){
+function Css({ quizData, isLightOn, lightToggle,containerRef,handleKeyDown }){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [QuizCta, setQuizCta] = useState('submit answer');
@@ -79,6 +79,25 @@ function Css({ quizData, isLightOn, lightToggle }){
         }
     };
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case 'Enter':
+                    if (selectedAnswer) {
+                        handleSubmit();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
 
     if (!quizData) {
         return <div>Loading...</div>;
@@ -88,7 +107,7 @@ function Css({ quizData, isLightOn, lightToggle }){
         <>
             <main>
                 <div className="theme-container">
-                    <div className="container">
+                    <div className="container" ref={containerRef}>
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
                                 <img className='subject-background' src={CssQuizIcon} alt="js-icon"/>
@@ -114,7 +133,7 @@ function Css({ quizData, isLightOn, lightToggle }){
                                         </div>
                                     </div>
                                 </div>
-                                <div className="quizess-choices">
+                                <div className="quizess-choices" tabIndex={0}>
                                     {Questions[currentQuestionIndex]?.options && Questions[currentQuestionIndex].options.length > 0 ? (
                                         Questions[currentQuestionIndex]?.options.map((option, index) => (
                                             <button
@@ -124,6 +143,7 @@ function Css({ quizData, isLightOn, lightToggle }){
                                                       ${hasSubmitted && option === QuizAnswer ? 'correct-answer' : ''} 
                                                       ${hasSubmitted && selectedAnswer === option && selectedAnswer !== QuizAnswer ? 'incorrect-answer' : ''}`}
                                                 onClick={() => handleAnswerClick(option)}
+                                                tabIndex={0}
                                             >
                                                 <div className="options-container">
                                                     <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
@@ -142,7 +162,7 @@ function Css({ quizData, isLightOn, lightToggle }){
                                     ) : (
                                         <p>No options available for this question</p>
                                     )}
-                                    <button className="submit-btn theme-button" onClick={handleSubmit}>
+                                    <button className="submit-btn theme-button" onClick={handleSubmit} tabIndex={0}>
                                         {hasSubmitted && isQuizEnd ? 'View Score' : QuizCta}
                                     </button>
                                     {errorMessage && (

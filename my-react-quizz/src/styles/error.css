@@ -1,0 +1,34 @@
+.error-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error-wrapper .error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6667rem;
+}
+.error-wrapper .error-icon {
+  max-width: 3.33rem;
+  max-height: 3.33rem;
+}
+.error-wrapper .error {
+  font-size: var(--heading-S-font-size);
+  color: var(--red);
+  font-weight: var(--heading-regular);
+}
+
+.go-back {
+  color: var(--purple);
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  font-size: var(--heading-M-font-size);
+}
+.go-back a {
+  cursor: pointer;
+  text-decoration: 3px underline blue;
+}
+
+/*# sourceMappingURL=error.css.map */

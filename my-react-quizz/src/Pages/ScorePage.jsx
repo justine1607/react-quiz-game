@@ -6,7 +6,7 @@ import '../styles/score.scss'
 import ThemeColor from "./ThemeColor.jsx";
 
 
-function Score ({ quizData, isLightOn, lightToggle  }){
+function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  }){
     const location = useLocation();
     const navigateBAckToQuiz = useNavigate()
     const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0 };
@@ -20,6 +20,24 @@ function Score ({ quizData, isLightOn, lightToggle  }){
     const quizTitleText = quizTitleData?.title;
     const quizIconData = quizData?.icon;
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case 'Enter':
+                    navigateBAckToQuiz('/');
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [handleKeyDown]);
+
     if (!quizData){
         return <div>loading...</div>;
     }
@@ -27,7 +45,7 @@ function Score ({ quizData, isLightOn, lightToggle  }){
         <>
             <main>
                 <div className="theme-container">
-                    <div className="container">
+                    <div className="container" ref={containerRef}>
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
                                 <img className='subject-background' src={quizIcon}
@@ -53,7 +71,7 @@ function Score ({ quizData, isLightOn, lightToggle  }){
                                         <p className={`total-question ${isLightOn? 'dark-total-question' : 'light-total-question'}`}>out of {totalQuestions}</p>
                                     </div>
                                 </div>
-                                <button className="play-again theme-button" onClick={goBackToQuiz}>
+                                <button className="play-again theme-button" onClick={goBackToQuiz} tabIndex={0}>
                                     play again
                                 </button>
                             </div>

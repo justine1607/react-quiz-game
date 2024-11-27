@@ -1,3 +1,7 @@
+[tabindex]:focus {
+  outline: 2px solid #4A90E2;
+}
+
 .theme-container {
   min-height: 100vh;
   max-width: 96.667rem;
@@ -241,20 +245,6 @@
 }
 .theme-container .container .theme-button:hover {
   background: var(--purple-50);
-}
-.theme-container .container .error-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6667rem;
-}
-.theme-container .container .error-icon {
-  max-width: 3.33rem;
-  max-height: 3.33rem;
-}
-.theme-container .container .error {
-  color: var(--red);
-  font-weight: var(--heading-regular);
 }
 
 @media screen and (max-width: 64rem) {
