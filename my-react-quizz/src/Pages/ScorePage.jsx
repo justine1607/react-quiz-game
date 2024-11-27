@@ -11,8 +11,7 @@ function Score ({ quizData, isLightOn, lightToggle  }){
     const navigateBAckToQuiz = useNavigate()
     const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0 };
     const goBackToQuiz = () => {
-        const route = quizTitle?.toLowerCase();
-        navigateBAckToQuiz(`/${route}`);
+        navigateBAckToQuiz('/');
     };
 
     const quizTitleData =  quizData?.quizzes.find(
