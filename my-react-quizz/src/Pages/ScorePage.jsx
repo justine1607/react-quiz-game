@@ -4,15 +4,33 @@ import PropTypes from 'prop-types';
 import '../styles/reset.scss'
 import '../styles/score.scss'
 import ThemeColor from "./ThemeColor.jsx";
+import confetti from 'canvas-confetti';
 
 
 function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  }){
     const location = useLocation();
     const navigateBAckToQuiz = useNavigate()
     const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0 };
+    console.log(score)
+    console.log(totalQuestions)
     const goBackToQuiz = () => {
         navigateBAckToQuiz('/');
     };
+
+    useEffect(() => {
+        if (score === totalQuestions) {
+            console.log('Perfect score!');
+            const isMobile = window.innerWidth <= 375;
+            confetti({
+                particleCount: isMobile ? 500 : 1000,
+                spread: 350,
+                startVelocity: isMobile ? 25 : 50, 
+                origin:  isMobile ?{ y: 0.3 } : { y: 0.5 },
+                colors: ['#A729F5', '#ffffff', '#EE5454', '#26D782']
+            });
+        }
+    }, [score, totalQuestions]);
+
 
     const quizTitleData =  quizData?.quizzes.find(
         (item) => item.title === quizTitle && item.icon
@@ -54,10 +72,12 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
                             </div>
                            <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle}/>
                         </span>
-                            <div className="score-container">
+                        <div className="score-container">
                             <div className="text-container">
-                                <h3 className={` theme-static-text-score ${isLightOn ? 'headline-text-dark' : 'headline-text-light'}`}>Quiz completed</h3>
-                                <h2 className={` theme-static-sub-text-score ${isLightOn ? 'sub-text-dark' : 'sub-text-light'}`}>You scored... </h2>
+                                <h3 className={` theme-static-text-score ${isLightOn ? 'headline-text-dark' : 'headline-text-light'}`}>Quiz
+                                    completed</h3>
+                                <h2 className={` theme-static-sub-text-score ${isLightOn ? 'sub-text-dark' : 'sub-text-light'}`}>You
+                                    scored... </h2>
                             </div>
                             <div className="card-container">
                                 <div className={`score-card ${isLightOn ? 'score-bg-dark' : 'score-bg-light'}`}>
@@ -68,7 +88,8 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
                                     </div>
                                     <div className="total-score">
                                         <h3 className={`score ${isLightOn ? 'score-dark' : 'score-light'}`}>{score}</h3>
-                                        <p className={`total-question ${isLightOn? 'dark-total-question' : 'light-total-question'}`}>out of {totalQuestions}</p>
+                                        <p className={`total-question ${isLightOn ? 'dark-total-question' : 'light-total-question'}`}>out
+                                            of {totalQuestions}</p>
                                     </div>
                                 </div>
                                 <button className="play-again theme-button" onClick={goBackToQuiz} tabIndex={0}>
@@ -82,6 +103,7 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
         </>
     );
 }
+
 Score.propTypes = {
     isLightOn: PropTypes.bool,
 };
