@@ -25,6 +25,7 @@ function Html({ quizData, isLightOn, lightToggle, containerRef, handleKeyDown })
                 quizTitle:HtmlQuizTitle,
                 quizIcon:HtmlQuizIcon} });
     }
+
     const HtmlData = quizData?.quizzes?.find(
         (item) => item.title === 'HTML' && item.icon);
     const HtmlQuizTitle = HtmlData?.title;
@@ -129,7 +130,7 @@ function Html({ quizData, isLightOn, lightToggle, containerRef, handleKeyDown })
                                         </div>
                                     </div>
                                 </div>
-                                <div className="quizess-choices" tabIndex={0}>
+                                <div className="quizess-choices">
                                     {Questions[currentQuestionIndex]?.options && Questions[currentQuestionIndex].options.length > 0 ? (
                                         Questions[currentQuestionIndex]?.options.map((option, index) => (
                                             <button
@@ -138,7 +139,7 @@ function Html({ quizData, isLightOn, lightToggle, containerRef, handleKeyDown })
                                                       ${selectedAnswer === option ? 'selected-choice' : ''} 
                                                       ${hasSubmitted && option === QuizAnswer ? 'correct-answer' : ''} 
                                                       ${hasSubmitted && selectedAnswer === option && selectedAnswer !== QuizAnswer ? 'incorrect-answer' : ''}`}
-                                                onClick={() => handleAnswerClick(option)} tabIndex={0}
+                                                onClick={() => handleAnswerClick(option)}
                                             >
                                                 <div className="options-container">
                                                     <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
@@ -160,7 +161,7 @@ function Html({ quizData, isLightOn, lightToggle, containerRef, handleKeyDown })
                                         <p>No options available for this question</p>
                                     )}
 
-                                    <button className="submit-btn theme-button" onClick={handleSubmit} tabIndex={0}>
+                                    <button className="submit-btn theme-button" onClick={handleSubmit} >
                                         {hasSubmitted && isQuizEnd ? 'View Score' : QuizCta}
                                     </button>
 

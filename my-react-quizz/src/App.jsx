@@ -34,7 +34,7 @@ function App() {
     }, []);
 
     const handleKeyDown = (event) => {
-        const focusableElements = containerRef.current.querySelectorAll('[tabindex="0"]');
+        const focusableElements = containerRef.current.querySelectorAll('button, a, input, select, textarea, [contenteditable], [tabindex]:not([tabindex="-1"])');
         const focusableArray = Array.from(focusableElements);
         const currentIndex = focusableArray.indexOf(document.activeElement);
 
@@ -78,7 +78,6 @@ function App() {
                 break;
         }
     };
-
     useEffect(() => {
         // Adding the event listener for keydown
         document.addEventListener('keydown', handleKeyDown);

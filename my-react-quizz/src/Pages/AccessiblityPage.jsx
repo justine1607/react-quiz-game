@@ -130,7 +130,7 @@ function Accessibility({ quizData, isLightOn, lightToggle,containerRef, handleKe
                                         </div>
                                     </div>
                                 </div>
-                                <div className="quizess-choices" tabIndex={0}>
+                                <div className="quizess-choices" >
                                     {Questions[currentQuestionIndex]?.options && Questions[currentQuestionIndex].options.length > 0 ? (
                                         Questions[currentQuestionIndex]?.options.map((option, index) => (
                                             <button key={index} className={`cta-choices 
@@ -138,7 +138,7 @@ function Accessibility({ quizData, isLightOn, lightToggle,containerRef, handleKe
                                                       ${selectedAnswer === option ? 'selected-choice' : ''} 
                                                       ${hasSubmitted && option === QuizAnswer ? 'correct-answer' : ''} 
                                                       ${hasSubmitted && selectedAnswer === option && selectedAnswer !== QuizAnswer ? 'incorrect-answer' : ''}`}
-                                                    onClick={() => handleAnswerClick(option)} tabIndex={0}>
+                                                    onClick={() => handleAnswerClick(option)} >
                                                 <div className="options-container" >
                                                     <p className={`cta-letters ${selectedAnswer === option ? 'selected-letter' : 'not-selected'}`}>{String.fromCharCode(65 + index)}</p>
                                                     <h3 className={`options ${isLightOn ? 'options-dark' : 'option-light'}`}>{option}</h3>
@@ -159,7 +159,7 @@ function Accessibility({ quizData, isLightOn, lightToggle,containerRef, handleKe
                                         <p>No options available for this question</p>
                                     )}
 
-                                    <button className="submit-btn theme-button" onClick={handleSubmit} tabIndex={0}>
+                                    <button className="submit-btn theme-button" onClick={handleSubmit} >
                                         {hasSubmitted && isQuizEnd ? 'View Score' : QuizCta}
                                     </button>
                                     {errorMessage && (

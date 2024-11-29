@@ -11,8 +11,6 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
     const location = useLocation();
     const navigateBAckToQuiz = useNavigate()
     const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0 };
-    console.log(score)
-    console.log(totalQuestions)
     const goBackToQuiz = () => {
         navigateBAckToQuiz('/');
     };
@@ -24,7 +22,7 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
             confetti({
                 particleCount: isMobile ? 500 : 1000,
                 spread: 350,
-                startVelocity: isMobile ? 25 : 50, 
+                startVelocity: isMobile ? 25 : 50,
                 origin:  isMobile ?{ y: 0.3 } : { y: 0.5 },
                 colors: ['#A729F5', '#ffffff', '#EE5454', '#26D782']
             });

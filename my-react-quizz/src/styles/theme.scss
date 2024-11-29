@@ -4,6 +4,9 @@
 [tabindex]{
   outline: none;
 }
+button:focus {
+  outline: 2px solid #4A90E2; /* or any color you prefer */
+}
 .theme-container {
   min-height: 100vh;
   max-width: 96.667rem;padding-inline: 5.333rem;
