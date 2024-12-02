@@ -35,6 +35,11 @@
   flex: 1;
   gap: 2rem;
 }
+.theme-container .container .subject-wrapper .subject-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2.66rem;
+}
 .theme-container .container .subject-wrapper button {
   cursor: pointer;
   padding: 1.66rem;

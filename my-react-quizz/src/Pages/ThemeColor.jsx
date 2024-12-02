@@ -12,8 +12,6 @@ function ThemeColor({ isLightOn, lightToggle }) {
                 lightToggle(); // Toggle the light/dark theme when Enter is pressed
             }
         };
-
-        // Add event listener for keydown
         document.addEventListener('keydown', handleKeyDown);
 
         // Cleanup the event listener on component unmount
@@ -25,11 +23,11 @@ function ThemeColor({ isLightOn, lightToggle }) {
     return (
         <>
             <ThemeBg isLightOn={isLightOn} />
-            <div className="lights">
+            <div className="lights" ref={containerRef}>
                 <img className={`img-light ${isLightOn ? 'none' : 'block'}`} src="/images/icon-sun-dark.svg" alt="sun-dark" />
                 <img className={`img-light ${isLightOn ? 'block' : 'none'}`} src="/images/icon-sun-light.svg" alt="sun-light" />
                 <div className="light-toggle" onClick={lightToggle}>
-                    <span className={`circle ${isLightOn ? 'active' : ''}`} ref={containerRef} tabIndex={0}></span>
+                    <button className={`circle ${isLightOn ? 'active' : ''}`}></button>
                 </div>
                 <img className={`img-light ${isLightOn ? 'block' : 'none'}`} src="/images/icon-moon-light.svg" alt="moon-light" />
                 <img className={`img-light ${isLightOn ? 'none' : 'block'}`} src="/images/icon-moon-dark.svg" alt="moon-dark" />

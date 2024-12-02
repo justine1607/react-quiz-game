@@ -7,12 +7,13 @@ import ThemeColor from "./ThemeColor.jsx";
 import confetti from 'canvas-confetti';
 
 
-function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  }){
+function Score ({ isLightOn, lightToggle,containerRef, handleKeyDown  }){
     const location = useLocation();
-    const navigateBAckToQuiz = useNavigate()
-    const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0 };
+    const navigateBackToQuiz = useNavigate()
+    const { score, totalQuestions, quizTitle, quizIcon } = location.state || { score: 0, totalQuestions: 0,  quizTitle: '',
+        quizIcon: ''  };
     const goBackToQuiz = () => {
-        navigateBAckToQuiz('/');
+        navigateBackToQuiz('/');
     };
 
     useEffect(() => {
@@ -30,17 +31,17 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
     }, [score, totalQuestions]);
 
 
-    const quizTitleData =  quizData?.quizzes.find(
-        (item) => item.title === quizTitle && item.icon
-    )
-    const quizTitleText = quizTitleData?.title;
-    const quizIconData = quizData?.icon;
+    // const quizTitleData =  quiz.quizzes.find(
+    //     (item) => item.title === quizTitle && item.icon
+    // )
+    // const quizTitleText = quizTitleData?.title;
+    // const quizIconData = quiz.questions?.icon;
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             switch (event.key) {
                 case 'Enter':
-                    navigateBAckToQuiz('/');
+                    navigateBackToQuiz('/');
                     break;
                 default:
                     break;
@@ -54,9 +55,9 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
         };
     }, [handleKeyDown]);
 
-    if (!quizData){
-        return <div>loading...</div>;
-    }
+    // if (!quiz){
+    //     return <div>loading...</div>;
+    // }
     return(
         <>
             <main>
@@ -65,8 +66,8 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
                         <span className='accessibility-style theme-course-style'>
                             <div className="accessibility-img-wrapper theme-course-wrapper">
                                 <img className='subject-background' src={quizIcon}
-                                     alt={`${quizIconData} Icon`}/>
-                               <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitleText}</h3>
+                                     alt={`${quizIcon} Icon`}/>
+                               <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitle}</h3>
                             </div>
                            <ThemeColor isLightOn={isLightOn} lightToggle={lightToggle}/>
                         </span>
@@ -82,7 +83,7 @@ function Score ({ quizData, isLightOn, lightToggle,containerRef, handleKeyDown  
                                     <div className="accessibility-img-wrapper">
                                         <img className='subject-background' src={quizIcon}
                                              alt={`${quizIcon} Icon`}/>
-                                        <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitleText}</h3>
+                                        <h3 className={`subject-name ${isLightOn ? 'theme-subject-dark' : 'theme-subject-light'}`}>{quizTitle}</h3>
                                     </div>
                                     <div className="total-score">
                                         <h3 className={`score ${isLightOn ? 'score-dark' : 'score-light'}`}>{score}</h3>

@@ -39,6 +39,9 @@
       flex: 1;
       gap: 2rem;
 
+      .subject-title{
+        display: flex;flex-direction: column;gap: 2.66rem;
+      }
       button {
         cursor: pointer;
         padding: 1.66rem;

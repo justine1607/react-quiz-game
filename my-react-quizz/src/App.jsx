@@ -1,16 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react'
 import './styles/reset.scss'
 import './styles/theme.scss'
-import './styles/start.scss'
-// import {useNavigate, useNavigation} from "react-router-dom";
-import Start from './Pages/StartMenu.jsx';
-import ThemeBg from "./Pages/ThemeBgImage.jsx";
-import ThemeColor from "./Pages/ThemeColor.jsx";
-import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
-import AccessibilityPage from "./Pages/AccessiblityPage.jsx";
-import JavaScriptPage from "./Pages/JavaScriptPage.jsx";
-import CssPage from "./Pages/CssPage.jsx";
-import HtmlPage from "./Pages/HtmlPage.jsx";
+import './styles/start.scss';
+import QuizBlock from './Pages/Quiz-block.jsx';
+import QuestionAnswerPage from './Pages/Question-AnswerPage.jsx';
+import {Route, Routes, useNavigate} from "react-router-dom";
 import ScorePage from "./Pages/ScorePage.jsx";
 import NotFoundPage from "./Pages/NotFoundPage.jsx";
 
@@ -79,7 +73,6 @@ function App() {
         }
     };
     useEffect(() => {
-        // Adding the event listener for keydown
         document.addEventListener('keydown', handleKeyDown);
 
         // Cleanup the event listener on component unmount
@@ -91,12 +84,10 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Start containerRef={containerRef} handleKeyDown={handleKeyDown} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
-                <Route path="/accessibility" element={<AccessibilityPage containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
-                <Route path="/javascript" element={<JavaScriptPage containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
-                <Route path="/css" element={<CssPage containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
-                <Route path="/html" element={<HtmlPage containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
-                <Route path="/results" element={<ScorePage containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
+
+                <Route path="/" element= { <QuizBlock containerRef={containerRef} handleKeyDown={handleKeyDown} quizData={quizData} isLightOn={isLightOn} lightToggle={lightToggle}/> } />
+                <Route path="/quiz/:quizIndex" element= {<QuestionAnswerPage containerRef={containerRef} handleKeyDown={handleKeyDown} isLightOn={isLightOn} lightToggle={lightToggle}/> } />
+                <Route path="/results/" element={<ScorePage containerRef={containerRef} handleKeyDown={handleKeyDown} isLightOn={isLightOn} lightToggle={lightToggle}/>} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>
